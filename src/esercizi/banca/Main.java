@@ -3,8 +3,9 @@ package esercizi.banca;
 import java.util.Scanner;
 
 public class Main {
+	static Scanner input = new Scanner(System.in);
+	
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
 		int scelta = 0;
 
 		do {
@@ -14,6 +15,7 @@ public class Main {
 			switch (scelta) {
 			case 1:
 				System.out.println("Hai scelto di inserire un nuovo cliente!");
+				inserisciCliente();
 				break;
 			default:
 				System.out.println("La scelta che hai effettuato non è corretta!");
@@ -31,6 +33,16 @@ public class Main {
 	}
 	
 	public static void inserisciCliente() {
+		String nome, cognome;
+		double saldo;
+		
 		System.out.println("Inserisci il nome: ");
+		nome = input.next();
+		
+		System.out.println("Inserisci il cognome: ");
+		cognome = input.next();
+		
+		System.out.println("Inserisci il saldo iniziale: ");
+		saldo = input.nextDouble();
 	}
 }
