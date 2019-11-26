@@ -24,7 +24,7 @@ public class Main {
 				break;
 			case 2:
 				System.out.println("Clienti presenti nella banca: ");
-				stampaClientiSenzaDescrivi();
+				stampaClienti();
 				break;
 			case 3:
 				System.out.println("Scegli il cliente che vuoi modificare:");
@@ -55,7 +55,20 @@ public class Main {
 		System.out.println("Inserisci il cognome: ");
 		cognome = input.next();
 		
-		c = new Cliente(nome, cognome);
+		Integer answer;
+		do {
+			System.out.println("Vuoi inserire il saldo iniziale? [0: NO/1: SI]");
+			answer = input.nextInt();
+		} while(answer != 0 && answer != 1);
+		
+		if(answer == 0) {
+			c = new Cliente(nome, cognome);
+		} else {
+			System.out.println("Qual è il saldo iniziale?");
+			Double s = input.nextDouble();
+			c = new Cliente(nome, cognome, s);
+		}
+		
 		clienti[numeroClienti] = c; 
 		numeroClienti++;
 	}
@@ -64,12 +77,6 @@ public class Main {
 		for(int i = 0; i < numeroClienti; i++) {
 			System.out.print(i + " - ");
 			clienti[i].descrivi();
-		}
-	}
-	
-	public static void stampaClientiSenzaDescrivi() {
-		for(int i = 0; i < numeroClienti; i++) {
-			System.out.println(clienti[i].getNome() + " " + clienti[i].getCognome());
 		}
 	}
 	
