@@ -75,8 +75,7 @@ public class Main {
 	
 	public static void stampaClienti() {
 		for(int i = 0; i < numeroClienti; i++) {
-			System.out.print(i + " - ");
-			clienti[i].descrivi();
+			System.out.print(i + " - " + clienti[i]);
 		}
 	}
 	

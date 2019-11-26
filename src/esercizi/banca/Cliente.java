@@ -37,4 +37,8 @@ public class Cliente {
 		System.out.println(this.nome + " " + this.cognome + " - " + this.cc.getSaldo());
 	}
 	
+	public String toString() {
+		return this.nome + " " + this.cognome + " - " + this.cc;
+	}
+	
  }
