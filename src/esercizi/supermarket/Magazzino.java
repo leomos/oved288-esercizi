@@ -1,6 +1,7 @@
 package esercizi.supermarket;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import esercizi.supermarket.prodotti.Prodotto;
@@ -8,17 +9,15 @@ import esercizi.supermarket.prodotti.Prodotto;
 public class Magazzino {
 	
 	public static final Integer CAPIENZA = 500;
-	private Prodotto[] prodotti;
-	private Integer numeroProdottiPresenti;
+	private List<Prodotto> prodotti;
 	
 	public Magazzino() {
-		this.prodotti = new Prodotto[this.CAPIENZA];
-		this.numeroProdottiPresenti = 0;
+		this.prodotti = new ArrayList<>();
 	}
 	
 	private Integer cerca(Integer codice) {
-		for(int i = 0; i < this.numeroProdottiPresenti; i++) {
-			if(prodotti[i].getCodice() == codice) {
+		for(int i = 0; i < prodotti.size(); i++) {
+			if(prodotti.get(i).getCodice() == codice) {
 				return i;
 			}
 		}
@@ -41,10 +40,8 @@ public class Magazzino {
 			return false;
 		}
 		
-		if(this.numeroProdottiPresenti < this.CAPIENZA && !presente(prodotto.getCodice())) {
-			this.prodotti[this.numeroProdottiPresenti] = prodotto;
-			this.numeroProdottiPresenti++;
-			return true;
+		if(!presente(prodotto.getCodice())) {
+			return prodotti.add(prodotto);
 		} else {
 			return false;
 		}
@@ -54,27 +51,21 @@ public class Magazzino {
 		Integer posizioneAttuale = cerca(codice);
 		
 		if(posizioneAttuale > -1) {
-			prodotti[posizioneAttuale] = prodotti[numeroProdottiPresenti-1];
-			prodotti[numeroProdottiPresenti-1] = null;
-			numeroProdottiPresenti--;
+			prodotti.remove(posizioneAttuale);
 		}
 	}
 	
 	public void stampa() {
-		for(int i = 0; i < numeroProdottiPresenti; i++) {
+		int i = 0;
+		for(Prodotto p : prodotti) {
 			System.out.println("*** Prodotto n." + i + " ***");
-			prodotti[i].descrivi();
+			p.descrivi();
 			System.out.println();
+			i++;
 		}
 	}
 	
 	public List<Prodotto> getProdotti() {
-		List<Prodotto> l = new ArrayList<>();
-		
-		for(int i = 0; i < this.numeroProdottiPresenti; i++) {
-			l.add(prodotti[i]);
-		}
-		
-		return l;
+		return this.prodotti;
 	}
 }
