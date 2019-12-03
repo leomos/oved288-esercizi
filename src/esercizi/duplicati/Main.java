@@ -19,10 +19,8 @@ public class Main {
 			do {
 				line = reader.readLine();
 				
-				if(line != null) {
-					if(undup.indexOf(line) == -1) {
-						undup.add(line);
-					}
+				if(line != null && undup.indexOf(line) == -1) {
+					undup.add(line);
 				}
 			} while(line != null);
 			
